@@ -6,7 +6,11 @@ import Cta from '@components/Cta.astro';
 import Hero from '@components/Hero.astro';
 import Logos from '@components/Logos.astro';
 import Testimonials from '@components/Testimonials.astro';
+import CustomHero from '@components/CustomHero.astro';
+import BlogPostPreview from '@components/BlogPostPreview.astro';
 import { fetchData, getPageById } from '@data/page';
+import Timetable from '@components/Timetable.astro';
+import HomepageCarousel from '@components/HomepageCarousel.astro';
 
 export async function getStaticPaths() {
     const data = await fetchData();
@@ -30,9 +34,18 @@ const componentMap = {
     ctaSection: Cta,
     heroSection: Hero,
     logosSection: Logos,
-    testimonialsSection: Testimonials
+    testimonialsSection: Testimonials,
+    customHeroSection: CustomHero,
+    blogPostsSection: BlogPostPreview,
+    timetable: Timetable,
+    homepageCarousel: HomepageCarousel
 };
 ---
+
+<link rel="stylesheet" href="/src/assets/css/bootstrap.min.css">
+<script src="/src/assets/js/jquery.js"></script>
+<script src="/src/assets/js/popper.min.js"></script>
+<script src="/src/assets/js/bootstrap.min.js"></script>
 
 {
     page && (

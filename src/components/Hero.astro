@@ -11,26 +11,22 @@ interface Props extends HeroSection {
 const { heading, body, cta, ...rest } = Astro.props;
 ---
 
-<Section {...rest} class="text-center">
-    {
-        heading && (
-            <h1 class="text-4xl font-black sm:text-6xl text-balance" data-sb-field-path=".heading">
-                {heading}
-            </h1>
-        )
-    }
-    {body && <div class:list={['mx-auto', heading && 'mt-6', 'max-w-prose markdown']} data-sb-field-path=".body" set:html={marked.parse(body)} />}
-    {
-        cta && cta.length > 0 && (
-            <div class:list={[(heading || body) && 'mt-8', 'flex flex-wrap items-center justify-center gap-4']} data-sb-field-path=".cta">
-                {cta.map((item, index) => (
-                    <Action
-                        action={item}
-                        class:list={[item._type === 'actionLink' && 'font-bold underline hover:no-underline']}
-                        data-sb-field-path={`.${index}`}
-                    />
-                ))}
+
+<div class="container-fluid color_bar py-3 justify-content-center">
+    <div class="container mt-3 wh-color">
+        <div class="row">
+
+            <div class="col-lg-3 col-md-12 col-sm-12 my-3">
+                <a href="#"><img src="https://st-barbara-austria.org/assets/images/portret2.png" alt="" class="w-100 rounder"></a>
             </div>
-        )
-    }
-</Section>
+
+            <div class="col my-3">
+                <h1 class="title wh-color">Церква Св. Великомучениці Варвари у Відні</h1>
+                <p>Церква Св. Великомучениці Варвари у Відні з історичної перспективи є важливим свідком зв’язків Австрії з Греко-католицькою Церквою та Україною, що пролягають через століття.</p>
+                <a class="btn btn-dark m-1" href="#">Свята Великомучениця Варвара</a>
+                <a class="btn btn-dark m-1" href="#">Церковна газета</a>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,137 +1,64 @@
 ---
-import { type Header } from 'types';
-import Action from '@components/Action.astro';
-import ResponsiveImage from '@components/ResponsiveImage.astro';
-
-interface Props extends Header {
-    'data-sb-field-path'?: string;
+// Props: locale string, navLinks array, languagePages array with {lang, url, icon}
+interface NavLink {
+    name: string;
+    link: string;
+}
+interface LanguagePage {
+    lang: string;
+    url: string;
+    icon: string;
 }
 
-const { title, logo, navLinks, 'data-sb-field-path': fieldPath } = Astro.props;
+const { locale, navLinks, languagePages } = Astro.props;
+const logoLink = locale === 'ua' ? 'https://st-barbara-austria.org' : 'https://st-barbara-austria.org/de/';
 ---
 
-<nav class="p-4 sm:p-5" data-sb-field-path={fieldPath}>
-    <div class="flex items-center justify-between w-full gap-6 mx-auto max-w-7xl">
-        {
-            logo.src ? (
-                <a class="flex items-center" href="/">
-                    <ResponsiveImage _id={logo._id} src={logo.src} width={logo.dimensions?.width} height={logo.dimensions?.height} alt={logo.alt} />
-                </a>
-            ) : (
-                <a class="text-xl font-bold sm:text-2xl" href="/" data-sb-field-path=".title">
-                    {title}
-                </a>
-            )
-        }
-        {
-            navLinks && navLinks.length > 0 && (
-                <>
-                    <ul class="hidden lg:flex lg:flex-wrap lg:items-center lg:gap-6" data-sb-field-path=".navLinks">
-                        {navLinks.map((item, index) => (
-                            <li>
-                                <Action
-                                    action={item}
-                                    class:list={[item._type === 'actionLink' ? 'no-underline hover:underline' : 'px-4 py-3 h-auto min-h-0']}
-                                    data-sb-field-path={`.${index}`}
-                                />
-                            </li>
-                        ))}
-                    </ul>
-                    <div class="relative lg:hidden">
-                        <button
-                            class="inline-flex justify-center items-center w-10 h-10 relative z-2 nav-toggle"
-                            aria-label="Open Menu"
-                            aria-expanded="false"
-                            aria-controls="nav-panel"
-                        >
-                            <span class="nav-toggle-icon" />
-                        </button>
-                        <div id="nav-panel" class="nav-panel absolute rounded-box -top-2 -right-2 z-1 shadow-xl bg-base-100 border border-base-200/70">
-                            <ul class="flex flex-col px-4 pb-6 pt-14" data-sb-field-path=".navLinks">
-                                {navLinks.map((item, index) => (
-                                    <li>
-                                        <Action
-                                            action={item}
-                                            class:list={[
-                                                item._type === 'actionLink' ? 'block py-2 no-underline hover:underline' : 'w-full px-4 py-3.5 h-auto min-h-0'
-                                            ]}
-                                            data-sb-field-path={`.${index}`}
-                                        />
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    </div>
-                </>
-            )
-        }
+<nav class="navbar navbar-expand-lg navbar-dark color_bar sticky-top">
+    <a href=" https://st-barbara-austria.org " class="navbar-brand">
+        <img src="https://st-barbara-austria.org/assets/images/logo4.png" height="40px" width="177px">
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+
+        <ul class="navbar-nav">
+
+            <li class="nav-item   ">
+                <a class="nav-link" href="/ua/timetable">Розклад</a>
+            </li>
+
+            <li class="nav-item   ">
+                <a class="nav-link" href="/ua/hazeta">Газета</a>
+            </li>
+
+            <li class="nav-item   ">
+                <a class="nav-link" href="/ua/tayinstva">Таїнства</a>
+            </li>
+
+            <li class="nav-item   ">
+                <a class="nav-link" href="/ua/pozhertvy">Допомога Україні</a>
+            </li>
+
+            <li class="nav-item   ">
+                <a class="nav-link" href="/ua/history">Історія</a>
+            </li>
+        </ul>
+
+    </div>
+
+    <div style="min-width: 177px; text-align: right;">
+        <div class="dropdown">
+            <button class="btn btn-light rounded-circle p-0" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="width: 40px; height: 40px;">
+                <img src="https://st-barbara-austria.org/assets/images/Ukraine.png" alt="English" style="width: 100%; height: 100%; object-fit: contain; border-radius: 50%;" />
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end mt-2" aria-labelledby="languageDropdown" style="min-width: 60px;">
+                <li><a class="dropdown-item d-flex align-items-center" href="/de"><img src="https://st-barbara-austria.org/assets/images/Austria.png" alt="Deutsch" style="width: 20px; height: 20px; border-radius: 50%;" class="me-2" /> Deutsch</a></li>
+                <li><a class="dropdown-item d-flex align-items-center" href="/ua"><img src="https://st-barbara-austria.org/assets/images/Ukraine.png" alt="Українська" style="width: 20px; height: 20px; border-radius: 50%;" class="me-2" /> Українська</a></li>
+            </ul>
+        </div>
     </div>
 </nav>
-
-<style>
-    @reference "../styles/globals.css";
-    .nav-panel {
-        @apply max-w-72 opacity-0 scale-90 origin-top-right invisible;
-        width: calc(100vw - 1rem);
-        transition:
-            transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-            opacity 0.15s cubic-bezier(0.4, 0, 0.2, 1),
-            visibility 0s 0.25s;
-    }
-    .nav-panel.is-visible {
-        @apply scale-100 opacity-100 visible;
-        transition: 0.25s;
-    }
-    .nav-panel li + li:has(.btn),
-    .nav-panel li:has(.btn) + li {
-        @apply mt-4;
-    }
-    .nav-toggle-icon {
-        @apply block relative bg-current rounded transition;
-        width: 1.5rem;
-        height: 0.125rem;
-    }
-    .nav-toggle-icon:before,
-    .nav-toggle-icon:after {
-        @apply block absolute bg-current rounded transition-all;
-        content: '';
-        width: 1.5rem;
-        height: 0.125rem;
-    }
-    .nav-toggle-icon:before {
-        top: -0.5rem;
-    }
-    .nav-toggle-icon:after {
-        top: 0.5rem;
-    }
-    .nav-toggle-icon.is-active {
-        @apply bg-transparent;
-    }
-    .nav-toggle-icon.is-active:before {
-        top: 0;
-        margin-top: -0.5625rem;
-        transform: translateY(0.5rem) rotate(-45deg);
-    }
-    .nav-toggle-icon.is-active:after {
-        top: 0;
-        margin-top: -0.5625rem;
-        transform: translateY(0.5rem) rotate(45deg);
-    }
-</style>
-
-<script>
-    function navToggle() {
-        const nav = document.querySelector('.nav-panel');
-        const navToggleBtn = document.querySelector('.nav-toggle');
-        const navToggleIcon = document.querySelector('.nav-toggle-icon');
-        navToggleBtn?.addEventListener('click', () => {
-            const isMenuExpanded = navToggleBtn.getAttribute('aria-expanded') === 'true';
-            navToggleBtn.setAttribute('aria-expanded', isMenuExpanded ? 'false' : 'true');
-            navToggleBtn.setAttribute('aria-label', isMenuExpanded ? 'Open Menu' : 'Close Menu');
-            navToggleIcon?.classList.toggle('is-active');
-            nav?.classList.toggle('is-visible');
-        });
-    }
-    navToggle();
-    document.addEventListener('astro:after-swap', navToggle);
-</script>
