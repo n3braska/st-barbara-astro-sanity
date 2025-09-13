@@ -17,28 +17,23 @@
         "@sanity/document-internationalization": "^4.0.0",
         "@sanity/image-url": "^1.2.0",
         "@sanity/validation": "^3.14.4",
-        "@tailwindcss/vite": "^4.1.13",
         "astro": "^5.1.1",
         "astro-icon": "^1.1.0",
         "dotenv": "^16.4.7",
         "esbuild": "^0.25.6",
-        "flowbite": "^3.1.2",
-        "flowbite-react": "^0.12.9",
         "fs-extra": "^11.2.0",
         "marked": "^15.0.4",
         "next-sanity": "^9.12.3",
         "react": "^18.3.1",
         "react-dom": "^18.3.1",
         "react-is": "^18.3.1",
-        "styled-components": "^6.1.15",
-        "tailwindcss": "^4.1.13"
+        "styled-components": "^6.1.15"
     },
     "devDependencies": {
         "@sanity/export": "^3.38.1",
         "@sanity/import": "^3.37.4",
         "@stackbit/cms-sanity": "^0.2.86",
         "@stackbit/types": "^2.0.0",
-        "configstore": "7.0.0",
-        "daisyui": "^5.0.0"
+        "configstore": "7.0.0"
     }
 }

@@ -2,23 +2,15 @@
 import Section from './Section.astro';
 
 const { month, jesuitenTimetable, josaphatTimetable, ...rest } = Astro.props;
-console.log(JSON.stringify(Astro.props));
 const urlPath = Astro.request.url.replace('http://localhost:3000', '');
-console.log("urlPath: " + urlPath);
 const isPreview = urlPath === '/ua/' || urlPath === '/de/';
-console.log("isPreview: " + isPreview);
+
 
 const jesuitenDays = jesuitenTimetable.days;
 const jesuitenAnnouncements = jesuitenTimetable.announcement;
 
 const josaphatDays = josaphatTimetable.days;
 const josaphatAnnouncements = josaphatTimetable.announcement;
-
-console.log("jesuitenDays: " + JSON.stringify(jesuitenDays));
-console.log("jesuitenAnnouncements: " + JSON.stringify(jesuitenAnnouncements));
-
-console.log("josaphatDays: " + JSON.stringify(josaphatDays));
-console.log("josaphatAnnouncements: " + JSON.stringify(josaphatAnnouncements));
 ---
 
 <Section {...rest} class="container pt-1 pb-5 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
