@@ -1,8 +1,11 @@
 ---
 import Section from './Section.astro';
-import { urlFor } from '../utils/imageUrlBuilder';
+import ResponsiveImage from './ResponsiveImage.astro';
+import { urlFor } from '../utils/sanityImageUrl';
 
 const {images, ...rest} = Astro.props;
+console.log('Current image: ');
+console.log(JSON.stringify(images));
 ---
 <Section class="container-fluid color_bar">
     <div class="container mt-2">
@@ -10,13 +13,29 @@ const {images, ...rest} = Astro.props;
             <div class="container-fluid p-0">
                 <div id="carouselIndikators" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner rounded">
+
                         {images.map((imageItem, index) => (
                             <div class={`carousel-item ${index === 0 ? ' active' : ''}`}>
-                                <img src={urlFor(imageItem.image).width(1920).height(774).auto('format').url()}
-                                     alt={imageItem.alt}
-                                     class="d-block w-100">
+                                <img
+                                    src={urlFor(imageItem.image)
+                                        .url()}
+                                    alt={imageItem.alt}
+                                    class="max-w-24"
+                                />
                             </div>
                         ))}
+
+                        <!--
+                        <div class="carousel-item active"}>
+                            <ResponsiveImage
+                                src={image.src}
+                                width={80}
+                                height={80}
+                                alt={image.alt}
+                                class="max-w-24"
+                            />
+                        </div>
+                        -->
                     </div>
                 </div>
             </div>

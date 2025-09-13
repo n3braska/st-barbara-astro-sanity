@@ -16,7 +16,7 @@ export default defineType({
     fields: [
         defineField({
             name: 'images',
-            title: 'Carousel Images',
+            title: 'Carousel Image',
             type: 'array',
             of: [{ type: 'customImage' }],
             group: 'content',

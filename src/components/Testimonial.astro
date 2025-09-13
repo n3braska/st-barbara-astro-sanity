@@ -9,6 +9,9 @@ interface Props extends Testimonial {
 }
 
 const { quote, author, theme, hasBorder, class: className, 'data-sb-field-path': fieldPath } = Astro.props;
+
+console.log('Testimonial images: ');
+console.log(JSON.stringify(author.image));
 ---
 
 <div

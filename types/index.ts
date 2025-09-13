@@ -86,7 +86,7 @@ export interface Page {
     _id: string;
     slug: Slug;
     title: string;
-    sections: Array<CardsSection | CtaSection | HeroSection | LogosSection | TestimonialsSection >;
+    sections: Array<CardsSection | CtaSection | HeroSection | LogosSection | TestimonialsSection | HomepageCarouselSection >;
     metaTitle?: string;
     addTitleSuffix?: boolean;
     metaDescription?: string;
@@ -132,4 +132,10 @@ export interface TestimonialsSection extends Section {
     body?: string;
     items?: Array<Testimonial>;
     columns?: 'one' | 'two';
+}
+
+export interface HomepageCarouselSection extends Section {
+    heading?: string;
+    body?: string;
+    items?: Array<CustomImage>;
 }
