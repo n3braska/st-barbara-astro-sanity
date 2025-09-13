@@ -1,0 +1,57 @@
+---
+import { marked } from 'marked';
+import { type HeroSection } from 'types';
+import Action from '@components/Action.astro';
+import Section from '@components/Section.astro';
+
+interface Props extends HeroSection {
+    image?: { src: string; alt?: string; href?: string };
+    'data-sb-field-path'?: string;
+}
+
+const { heading, body, cta, image, ...rest } = Astro.props;
+---
+
+<Section {...rest} class="container-fluid color_bar py-3 justify-content-center">
+    <div class="container mt-3 wh-color">
+        <div class="row">
+            <div class="col-lg-3 col-md-12 col-sm-12 my-3">
+                {image && (
+                    image.href ? (
+                        <a href={image.href}>
+                            <img src={image.src} alt={image.alt || ""} class="w-100 rounder" />
+                        </a>
+                    ) : (
+                        <img src={image.src} alt={image.alt || ""} class="w-100 rounder" />
+                    )
+                )}
+            </div>
+            <div class="col my-3 d-flex flex-column justify-content-center">
+                {heading && (
+                    <h1 class="title wh-color text-4xl font-black sm:text-6xl text-balance" data-sb-field-path=".heading">
+                        {heading}
+                    </h1>
+                )}
+                {body && (
+                    <div class="max-w-prose markdown mt-4" data-sb-field-path=".body" set:html={marked.parse(body)} />
+                )}
+                {cta && Array.isArray(cta) && cta.length > 0 && (
+                    <div class="mt-4 d-flex flex-wrap align-items-center justify-content-center gap-3" data-sb-field-path=".cta">
+                        {cta.map((item, idx) => (
+                            <Action
+                                action={item}
+                                class:list={[
+                                    'btn',
+                                    'btn-dark',
+                                    'm-1',
+                                    item._type === "actionLink" && 'font-bold underline hover:no-underline'
+                                ]}
+                                data-sb-field-path={`.cta.${idx}`}
+                            />
+                        ))}
+                    </div>
+                )}
+            </div>
+        </div>
+    </div>
+</Section>

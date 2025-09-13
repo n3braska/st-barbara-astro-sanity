@@ -1,0 +1,94 @@
+---
+import { loadQuery } from '../utils/loadQuery';
+import Section from './Section.astro';
+/*
+const { maxNumberOfPosts = 3, ...rest } = Astro.props;
+
+const posts = await loadQuery({
+    query: `*[_type == "page"] | order(_id desc)[0...${maxNumberOfPosts}] {
+    title,
+    slug
+  }`
+});
+*/
+
+const  maxNumberOfPosts = 3;
+
+const posts = Array(3).fill({
+    title: 'Home',
+    slug: '#',
+});
+
+const events = Array(10).fill({
+    month: 'OCT',
+    day: '26',
+    title: 'National Day',
+    time: '8:00 AM - 5:00 PM',
+});
+//<Section {...rest}
+---
+
+
+
+
+
+
+
+<Section class="container-fluid color_bar p-3">
+    <h3 class="mb-3 text-center title text-white">Our latest news</h3>
+    <div class="container bg-white rounded p-4">
+        <div class="row g-4">
+            {posts.map(post => (
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <img
+                            src="https://st-barbara-austria.org/assets/images/portret2.png"
+                            class="card-img-top"
+                            style="height: 180px; width: 100%; object-fit: cover;"
+                            alt="default image st barbara"
+                        >
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">{post.title}</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+                            <a href={`${post.slug.current}`} class="btn btn-dark mt-auto">Read more</a>
+                        </div>
+                    </div>
+                </div>
+            ))}
+        </div>
+    </div>
+</Section>
+
+
+<div class="container mt-2 mb-5">
+    <h3 class="my-3 text-center title pt-3">Upcoming events</h3>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+        {events.map((event, index) => (
+            <div class="col-4">
+                <div class="d-flex gap-3 align-items-center p-2 h-100">
+                    <div class="text-center">
+                        <div class="border rounded mb-1 p-2" style="width:70px; height:70px;">
+                            <div class="fw-bold text-uppercase text-secondary" style="font-size:14px;">{event.month}</div>
+                            <div class="fw-bold" style="font-size:24px;">{event.day}</div>
+                        </div>
+                    </div>
+                    <div class="flex-grow-1 p-2">
+                        <div class="fw-bold">{event.title}</div>
+                        <div class="text-muted" style="font-size:13px;">{event.time}</div>
+                    </div>
+                </div>
+            </div>
+        ))}
+    </div>
+</div>
+
+<script>
+    $(".tab-list").on("click", ".tab", function(e) {
+        e.preventDefault();
+
+        $(".tab").removeClass("active");
+        $(".tab-content").removeClass("show");
+        $(this).addClass("active");
+        $($(this).attr("href")).addClass("show");
+    });
+</script>
