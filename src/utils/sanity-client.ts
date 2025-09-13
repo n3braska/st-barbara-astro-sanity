@@ -16,7 +16,7 @@ export const sanityConfig: ClientConfig = {
     projectId: SANITY_PROJECT_ID,
     dataset: SANITY_DATASET || 'production',
     useCdn: false,
-    apiVersion: '2024-01-31',
+    apiVersion: '2025-09-11',
     token: SANITY_TOKEN,
     perspective: isDev || isDeployPreview || previewDrafts ? 'previewDrafts' : 'published'
 };

@@ -20,6 +20,20 @@ export default defineType({
   ],
   fields: [
     defineField({
+      name: 'language',
+      title: 'Language',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'German', value: 'de' },
+          { title: 'Ukrainian', value: 'ua' },
+        ],
+        layout: 'dropdown',
+      },
+      validation: (Rule) => Rule.required(),
+      group: 'content', // or create a dedicated 'i18n' group if preferred
+    }),
+    defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
@@ -49,6 +63,10 @@ export default defineType({
         {type: 'heroSection'},
         {type: 'logosSection'},
         {type: 'testimonialsSection'},
+        {type: 'customHeroSection'},
+        {type: 'blogPostsSection'},
+        {type: 'timetable'},
+        {type: 'homepageCarousel'},
       ],
       group: 'content',
     }),

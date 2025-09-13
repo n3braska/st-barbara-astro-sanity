@@ -16,6 +16,16 @@ import person from './person'
 import siteConfig from './siteConfig'
 import testimonial from './testimonial'
 import testimonialsSection from './testimonialsSection'
+import customHeroSection from './customHeroSection';
+import customHero from './customHero';
+import blogPostsSection from './blogPostsSection';
+import timetableDayItem from './timetableDayItem';
+import timetableEvent from './timetableEvent';
+import timetableJesuiten from './timetableJesuiten';
+import timetableJosaphat from './timetableJosaphat'
+import blog from './blog';
+import timetable from './timetable';
+import homepageCarousel from './homepageCarousel';
 
 export const schemaTypes = [
   actionButton,
@@ -36,4 +46,14 @@ export const schemaTypes = [
   siteConfig,
   testimonial,
   testimonialsSection,
+  customHeroSection,
+  customHero,
+  blog,
+  blogPostsSection,
+  timetableDayItem,
+  timetableEvent,
+  timetableJesuiten,
+  timetableJosaphat,
+    timetable,
+  homepageCarousel
 ]

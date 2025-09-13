@@ -1,3 +1,4 @@
+
 export interface Action {
     _type?: string;
     label: string;
@@ -85,7 +86,7 @@ export interface Page {
     _id: string;
     slug: Slug;
     title: string;
-    sections: Array<CardsSection | CtaSection | HeroSection | LogosSection | TestimonialsSection>;
+    sections: Array<CardsSection | CtaSection | HeroSection | LogosSection | TestimonialsSection >;
     metaTitle?: string;
     addTitleSuffix?: boolean;
     metaDescription?: string;

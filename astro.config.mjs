@@ -2,13 +2,14 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sanity from '@sanity/astro';
 import { sanityConfig } from './src/utils/sanity-client';
+import flowbiteReact from "flowbite-react/plugin/astro";
 
 // https://astro.build/config
 export default defineConfig({
     image: {
         domains: ['cdn.sanity.io']
     },
-    integrations: [sanity(sanityConfig)],
+    integrations: [sanity(sanityConfig), flowbiteReact()],
     vite: {
         plugins: [tailwindcss()],
         server: {
@@ -18,5 +19,12 @@ export default defineConfig({
     },
     server: {
         port: 3000
+    },
+    i18n: {
+        locales: ["ua", "de"],
+        defaultLocale: "ua",
+        routing: {
+            prefixDefaultLocale: true
+        }
     }
 });
